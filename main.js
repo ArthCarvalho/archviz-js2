@@ -108,8 +108,8 @@ rgbeLoader.load('rural_asphalt_road_2k.hdr', function(bgtexture) {
         } else {
           newMaterial.aoMapIntensity = 0.25;
         }
-        if(material.name.startsWith("PictureFrame") && material.name != "PictureFrame.Outter") newMaterial.aoMapIntensity = 0.5;
-        if(material.name == "TableCenter") newMaterial.aoMapIntensity = 0.0;
+        if(material.name.startsWith("PictureFrame") && material.name != "PictureFrame.Outter") newMaterial.aoMapIntensity = 0.4;
+        if(material.name == "TableCenter") newMaterial.aoMapIntensity = 0.4;
         
         newMaterial.lightMap = lightmap; //material.emissiveMap;
         newMaterial.lightMapIntensity = 2.0;    
