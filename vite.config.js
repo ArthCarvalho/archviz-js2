@@ -3,7 +3,7 @@ const isCodeSandbox = 'SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in proc
 export default {
   root: './',
   publicDir: '../static/',
-  base: '/archviz-js/',
+  base: '/archviz-js2/',
   server:
   {
       host: true,
@@ -11,7 +11,7 @@ export default {
   },
   build:
   {
-      outDir: '../dist',
+      outDir: './dist',
       emptyOutDir: true,
       sourcemap: true
   }

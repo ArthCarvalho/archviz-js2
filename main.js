@@ -93,13 +93,23 @@ rgbeLoader.load('rural_asphalt_road_2k.hdr', function(bgtexture) {
             newMaterial.envMapIntensity = 1.0;
           } else {
             newMaterial.envMap = cubeRenderTarget.texture;
-            newMaterial.envMapIntensity = 4.0;
+            if(material.name == "TableCenter") {
+              newMaterial.envMapIntensity = 1.75;
+            } else {
+              newMaterial.envMapIntensity = 4.0;
+            }
+
+            if(material.name.startsWith("PictureFrame") && material.name != "PictureFrame.Outter") newMaterial.envMapIntensity = 1;
+            
+            
           }
         } else if (material.name == "CouchFabric") {
           newMaterial.aoMapIntensity = 0.1;
         } else {
           newMaterial.aoMapIntensity = 0.25;
         }
+        if(material.name.startsWith("PictureFrame") && material.name != "PictureFrame.Outter") newMaterial.aoMapIntensity = 0.5;
+        if(material.name == "TableCenter") newMaterial.aoMapIntensity = 0.0;
         
         newMaterial.lightMap = lightmap; //material.emissiveMap;
         newMaterial.lightMapIntensity = 2.0;    
@@ -206,17 +216,17 @@ rgbeLoader.load('rural_asphalt_road_2k.hdr', function(bgtexture) {
         console.log("scene.obj traverse", obj);
         if(!obj.isMesh) return;
         console.log(obj.material.name);
-        if(["Walls", "WallColor", "Walls.External", "Floor", "Floor.External"].indexOf(obj.material.name) < 0) {
-          
-          //obj.visible = false;
+        if(["TableCenter", "TableEdge", "TableBottom", "TableLegs", "Couch.Feet", "CouchFabric"].indexOf(obj.material.name) > -1) {
+          console.log('hiding:', obj.material.name);
+          obj.visible = false;
         }
       });
       cubeCamera.update(renderer, scene);
       scene.traverse(obj => {
         console.log("scene.obj traverse", obj);
         if(!obj.isMesh) return;
-        if(["Walls", "WallColor", "Walls.External", "Floor", "Floor.External"].indexOf(obj.material.name) < 0) {
-          //obj.visible = true;
+        if(["TableCenter", "TableEdge", "TableBottom", "TableLegs", "Couch.Feet", "CouchFabric"].indexOf(obj.material.name) > -1) {
+          obj.visible = true;
         }
       });
     
